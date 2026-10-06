@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SEY FX Trading Control</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#08070d; --panel:rgba(31,20,38,.72); --panel2:rgba(48,25,54,.72);
+  --line:rgba(255,255,255,.13); --text:#fff; --muted:#b7aabd;
+  --pink:#ff3f73; --violet:#b94cff; --green:#42f59b; --cyan:#6ee7ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 10% 0%,#4c153f 0,transparent 38%),
+    radial-gradient(circle at 90% 20%,#64152f 0,transparent 34%),
+    linear-gradient(145deg,#09070e,#1b0c1b 55%,#09070e);
+}
+main{max-width:1100px;margin:auto;padding:18px 16px 34px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:8px 2px 22px}
+.brand{display:flex;align-items:center;gap:10px}.logo{
+ width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:950;
+ background:linear-gradient(135deg,#ff3f73,#9b3cff);box-shadow:0 8px 30px #ff3f7340
+}
+.brand h1{font-size:18px;margin:0}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.navlinks{display:flex;gap:22px;color:#d9cddd;font-size:12px}.navlinks span:first-child{color:#fff}
+.live{border:1px solid #42f59b66;background:#42f59b12;color:var(--green);padding:7px 11px;border-radius:999px;font-size:11px;font-weight:800}
+.layout{display:grid;grid-template-columns:1.05fr 1fr;gap:14px}
+.panel{
+ background:linear-gradient(145deg,rgba(62,30,63,.72),rgba(21,15,29,.82));
+ border:1px solid var(--line);border-radius:20px;padding:22px;
+ box-shadow:0 20px 60px #0008;backdrop-filter:blur(16px)
+}
+.hero{min-height:440px;display:flex;flex-direction:column;justify-content:space-between}
+.badge{display:inline-block;color:#ff7b9d;border:1px solid #ff3f7366;background:#ff3f7315;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:800}
+h2{font-size:48px;line-height:1.02;margin:20px 0 13px;letter-spacing:-1.8px}
+.gradient{background:linear-gradient(90deg,#ff4775,#b84cff,#e45bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.desc{color:#c7b9ca;line-height:1.55;font-size:13px;max-width:440px}
+.actions{display:flex;gap:10px;margin-top:18px}.btn{
+ border:0;border-radius:12px;padding:12px 16px;color:#fff;font-weight:800;font-size:13px
+}.primary{background:linear-gradient(135deg,#ff4c70,#c13cff)}.secondary{background:#ffffff12;border:1px solid #ffffff20}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid #ffffff16}
+.stat b{display:block;font-size:20px}.stat span{color:var(--muted);font-size:9px}
+.right{display:grid;gap:10px}.quote{display:flex;align-items:center;justify-content:space-between}
+.symbol{font-size:15px;font-weight:850}.price{font-size:27px;font-weight:900;margin-top:7px}.change{color:var(--green);font-size:11px}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.meta div{color:var(--muted);font-size:9px}.meta b{display:block;color:#fff;font-size:11px;margin-top:3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{min-height:145px}.mini h3,.wide h3{font-size:14px;margin:0 0 12px}.muted{color:var(--muted);font-size:10px}
+.chart{height:65px;position:relative;overflow:hidden;margin-top:5px}
+svg{width:100%;height:100%}.pairs{display:grid;gap:10px}.pair{display:flex;justify-content:space-between;font-size:11px}.up{color:var(--green)}.down{color:#ff7191}
+.wide{padding:18px}.exec{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.execbox{background:#ffffff07;border:1px solid #ffffff10;border-radius:12px;padding:12px;text-align:center}.execbox b{display:block;font-size:20px}.execbox span{color:var(--muted);font-size:9px}
+.botbar{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.botbar button{padding:14px;border:0;border-radius:12px;font-weight:900;color:#fff}.on{background:linear-gradient(135deg,#20d97a,#0d9f55)}.off{background:linear-gradient(135deg,#ff4e68,#c72c46)}
+.note{text-align:center;color:#806f84;font-size:9px;margin-top:15px}
+@media(max-width:800px){.navlinks{display:none}.layout{grid-template-columns:1fr}h2{font-size:40px}.hero{min-height:400px}}
+@media(max-width:430px){main{padding:12px}.panel{padding:16px}.row2{grid-template-columns:1fr}.stats{gap:5px}.stat b{font-size:17px}.meta{grid-template-columns:1fr 1fr 1fr}.execbox b{font-size:17px}}
+</style>
+</head>
+<body>
+<main>
+<nav>
+  <div class="brand"><div class="logo">FX</div><div><h1>SEY FX</h1><small>MT5 TRADING CONTROL</small></div></div>
+  <div class="navlinks"><span>Dashboard</span><span>Markets</span><span>Bot Control</span><span>Settings</span></div>
+  <div class="live">● LIVE</div>
+</nav>
+
+<div class="layout">
+<section class="panel hero">
+  <div>
+    <span class="badge">◉ AUTO TRADING SYSTEM</span>
+    <h2>Trade with<br><span class="gradient">confidence.</span></h2>
+    <div class="desc">Control your SEY FX MT5 trading bot from one clean dashboard. Monitor account status, positions, re-entry levels and profit targets.</div>
+    <div class="actions"><button class="btn primary" onclick="document.getElementById('bot').scrollIntoView({behavior:'smooth'})">Start Trading</button><button class="btn secondary" onclick="refresh()">Refresh Status</button></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>24/7</b><span>BOT OPERATION</span></div>
+    <div class="stat"><b>0.01</b><span>BASE LOT</span></div>
+    <div class="stat"><b>XAUUSD</b><span>PRIMARY SYMBOL</span></div>
+  </div>
+</section>
+
+<section class="right">
+  <div class="panel quote">
+    <div><div class="symbol">⚡ XAUUSD</div><div class="price">$0.00</div><div class="change">● MT5 CONNECTION READY</div></div>
+    <div class="live">● Live</div>
+  </div>
+
+  <div class="row2">
+    <div class="panel mini">
+      <h3>Account Overview</h3>
+      <div class="meta">
+        <div>Balance<b id="balance">$0.00</b></div>
+        <div>Equity<b id="equity">$0.00</b></div>
+        <div>Positions<b id="positions">0</b></div>
+      </div>
+      <div class="chart">
+        <svg viewBox="0 0 400 80" preserveAspectRatio="none" aria-label="Account chart">
+          <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#ff3f73"/><stop offset="1" stop-color="#b94cff"/></linearGradient></defs>
+          <path d="M0 63 C45 50 62 64 94 42 S140 53 170 35 S220 49 250 28 S310 42 350 18 S380 27 400 12" fill="none" stroke="url(#g)" stroke-width="4"/>
+        </svg>
+      </div>
+    </div>
+    <div class="panel mini">
+      <h3>Live Pairs</h3>
+      <div class="pairs">
+        <div class="pair"><span>EUR/USD</span><span class="up">+0.24% ↗</span></div>
+        <div class="pair"><span>GBP/JPY</span><span class="up">+0.34% ↗</span></div>
+        <div class="pair"><span>XAU/USD</span><span class="up">+0.18% ↗</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel wide">
+    <h3>Execution Statistics <span class="muted">• Real-time</span></h3>
+    <div class="exec">
+      <div class="execbox"><b id="floating">$0.00</b><span>FLOATING P/L</span></div>
+      <div class="execbox"><b id="target">$5.00</b><span>PROFIT TARGET</span></div>
+      <div class="execbox"><b id="reentry">1000</b><span>RE-ENTRY PIPS</span></div>
+    </div>
+  </div>
+
+  <div class="panel" id="bot">
+    <h3 style="margin:0 0 5px">Bot Control</h3><div class="muted" id="status">MT5 bridge waiting</div>
+    <div class="botbar"><button class="on" onclick="bot(true)">▶ BOT ON</button><button class="off" onclick="bot(false)">■ BOT OFF</button></div>
+  </div>
+</section>
+</div>
+<div class="note">SEY FX • MT5 Trading Control • Secure HTTPS bridge required for live MT5 control</div>
+</main>
+<script>
+function bot(on){document.getElementById('status').textContent=on?'BOT ON • UI mode only':'BOT OFF • UI mode only'}
+function refresh(){document.getElementById('status').textContent='Status refreshed • Ready for MT5 bridge'}
+</script>
+</body>
+</html>
