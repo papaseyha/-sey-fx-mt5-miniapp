@@ -2,55 +2,107 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>SEY FX MT5 Control</title>
+
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
- background:radial-gradient(circle at 10% 10%,#64245f,#15101e 42%,#09070d);
+  margin:0;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 15% 5%,#64245f 0,#241329 38%,#090912 78%);
+  min-height:100vh;
 }
-main{max-width:1100px;margin:auto;padding:20px}
+main{max-width:760px;margin:auto;padding:18px}
+
 nav{
- display:flex;justify-content:space-between;align-items:center;
- padding:14px 18px;margin-bottom:20px;border:1px solid #ffffff18;
- border-radius:18px;background:#ffffff0b;backdrop-filter:blur(15px)
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 4px 20px;
 }
-.logo{font-size:24px;font-weight:800}
+.logo{font-size:28px;font-weight:900}
 .logo span{color:#ff3f9c}
-.live{color:#55ff9a;font-size:13px}
-.hero{display:grid;grid-template-columns:1fr 1.15fr;gap:16px}
+.live{color:#55ff9a;font-weight:700}
+
 .card{
- background:linear-gradient(145deg,#ffffff15,#ffffff07);
- border:1px solid #ffffff18;border-radius:24px;padding:22px;
- box-shadow:0 15px 50px #0005
+  background:linear-gradient(145deg,#ffffff13,#ffffff07);
+  border:1px solid #ffffff1c;
+  border-radius:26px;
+  padding:24px;
+  margin-bottom:20px;
+  box-shadow:0 15px 50px #0005;
 }
-h1{font-size:42px;line-height:1.05;margin:10px 0}
-.grad{background:linear-gradient(90deg,#ff4da6,#a98cff);
--webkit-background-clip:text;color:transparent}
-.sub{color:#b9afc5;line-height:1.6}
-.btns{display:flex;gap:10px;margin:25px 0}
+
+.small{color:#aaa;font-size:13px}
+h1{font-size:42px;line-height:1.05;margin:12px 0}
+.grad{
+  background:linear-gradient(90deg,#ff4da6,#a98cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.desc{color:#bbb;line-height:1.6;font-size:17px}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  margin:22px 0;
+}
 button{
- border:0;border-radius:13px;padding:14px 22px;color:#fff;
- font-weight:700;font-size:15px;cursor:pointer
+  border:1px solid #ffffff22;
+  border-radius:18px;
+  padding:17px 28px;
+  color:white;
+  font-weight:800;
+  font-size:16px;
+  cursor:pointer;
+  background:#ffffff0c;
 }
-.on{background:linear-gradient(90deg,#ff3f9c,#9d63ff)}
-.off{background:#ffffff15;border:1px solid #ffffff22}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px}
-.stat{padding:15px;border-radius:15px;background:#0003}
-.num{font-size:22px;font-weight:800}
-.small{font-size:11px;color:#a99fb5}
-.market{margin-bottom:12px}
-.market h3{margin:0 0 8px}
-.price{font-size:30px;font-weight:800}
-.green{color:#55ff9a}.red{color:#ff5f7a}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
-.box{padding:18px;border-radius:17px;background:#0003}
-.value{font-size:25px;font-weight:800;margin-top:5px}
-@media(max-width:700px){
- .hero{grid-template-columns:1fr}
- h1{font-size:34px}
- .stats{grid-template-columns:1fr 1fr}
+.on{
+  background:linear-gradient(90deg,#ff3298,#9d58ff);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.stat{
+  background:#08081055;
+  border-radius:20px;
+  padding:20px;
+}
+.value{font-size:30px;font-weight:900}
+.label{font-size:13px;color:#aaa;margin-top:5px}
+
+.symbol{font-size:38px;font-weight:900;margin:10px 0}
+.green{color:#55ff9a}
+.red{color:#ff657a}
+
+.settings{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.setting{
+  background:#08081055;
+  border-radius:20px;
+  padding:20px;
+}
+.setting strong{font-size:28px}
+
+#connection{
+  font-weight:700;
+  margin-top:10px;
+}
+
+@media(max-width:550px){
+  h1{font-size:38px}
+  .grid,.settings{grid-template-columns:1fr 1fr}
+  main{padding:14px}
 }
 </style>
 </head>
@@ -59,88 +111,161 @@ button{
 <main>
 
 <nav>
- <div class="logo">SEY <span>FX</span></div>
- <div class="live">● LIVE CONTROL</div>
+  <div class="logo">SEY <span>FX</span></div>
+  <div class="live">● LIVE CONTROL</div>
 </nav>
 
-<section class="hero">
+<section class="card">
+  <div class="small">⚡ MT5 TRADING CONTROL</div>
 
-<div class="card">
- <div class="small">⚡ MT5 TRADING CONTROL</div>
- <h1>Trade with<br><span class="grad">confidence</span></h1>
- <p class="sub">
- Control your MT5 trading bot with a clean SEY FX dashboard.
- Monitor account status, positions and trading settings.
- </p>
+  <h1>Trade with <span class="grad">confidence</span></h1>
 
- <div class="btns">
-  <button class="on" onclick="setBot(true)">BOT ON</button>
-  <button class="off" onclick="setBot(false)">BOT OFF</button>
- </div>
-
- <div class="stats">
-  <div class="stat"><div class="num" id="balance">$0.00</div><div class="small">BALANCE</div></div>
-  <div class="stat"><div class="num" id="equity">$0.00</div><div class="small">EQUITY</div></div>
-  <div class="stat"><div class="num" id="positions">0</div><div class="small">POSITIONS</div></div>
- </div>
-</div>
-
-<div>
-
- <div class="card market">
-  <div class="small">XAUUSD • LIVE</div>
-  <h3>Gold Trading</h3>
-  <div class="price">XAUUSD</div>
-  <div class="green">● MT5 CONNECTION READY</div>
- </div>
-
- <div class="grid">
-  <div class="box">
-   <div class="small">BUY RE-ENTRY</div>
-   <div class="value">1000 <span class="small">PIPS</span></div>
+  <div class="desc">
+    Control your MT5 trading bot and monitor your account in real time.
   </div>
 
-  <div class="box">
-   <div class="small">SELL RE-ENTRY</div>
-   <div class="value">1000 <span class="small">PIPS</span></div>
+  <div class="buttons">
+    <button class="on" onclick="sendCommand('bot_on')">BOT ON</button>
+    <button onclick="sendCommand('bot_off')">BOT OFF</button>
   </div>
 
-  <div class="box">
-   <div class="small">PROFIT TARGET</div>
-   <div class="value">$5.00</div>
-  </div>
+  <div class="grid">
+    <div class="stat">
+      <div class="value" id="balance">$0.00</div>
+      <div class="label">BALANCE</div>
+    </div>
 
-  <div class="box">
-   <div class="small">FLOATING P/L</div>
-   <div class="value green" id="floating">$0.00</div>
-  </div>
- </div>
+    <div class="stat">
+      <div class="value" id="equity">$0.00</div>
+      <div class="label">EQUITY</div>
+    </div>
 
-</div>
+    <div class="stat">
+      <div class="value" id="positions">0</div>
+      <div class="label">POSITIONS</div>
+    </div>
+
+    <div class="stat">
+      <div class="value" id="floating">$0.00</div>
+      <div class="label">FLOATING P/L</div>
+    </div>
+  </div>
 </section>
 
-<div class="card" style="margin-top:16px">
- <button class="on" style="width:100%" onclick="refresh()">↻ REFRESH MT5 STATUS</button>
- <p class="small" id="status" style="text-align:center">
- Waiting for secure MT5 bridge...
- </p>
-</div>
+<section class="card">
+  <div class="small">XAUUSD • LIVE</div>
+  <div style="font-size:24px;font-weight:800">Gold Trading</div>
+
+  <div class="symbol" id="symbol">XAUUSD</div>
+
+  <div id="connection" class="red">
+    ● WAITING FOR MT5
+  </div>
+</section>
+
+<section class="settings">
+
+  <div class="setting">
+    <div class="label">BUY RE-ENTRY</div>
+    <strong>1000</strong> PIPS
+  </div>
+
+  <div class="setting">
+    <div class="label">SELL RE-ENTRY</div>
+    <strong>1000</strong> PIPS
+  </div>
+
+  <div class="setting">
+    <div class="label">PROFIT TARGET</div>
+    <strong>$5.00</strong>
+  </div>
+
+  <div class="setting">
+    <div class="label">BOT STATUS</div>
+    <strong id="botStatus">OFF</strong>
+  </div>
+
+</section>
 
 </main>
 
 <script>
-let bot=false;
+const API_BASE = "https://sey-fx-mt5-miniapp.onrender.com";
 
-function setBot(x){
- bot=x;
- document.getElementById("status").innerText=
- x?"BOT ON • Ready for MT5":"BOT OFF • New trades disabled";
+async function refreshStatus(){
+  try{
+    const response = await fetch(API_BASE + "/api/status", {
+      cache:"no-store"
+    });
+
+    if(!response.ok) throw new Error("API error");
+
+    const data = await response.json();
+
+    document.getElementById("balance").textContent =
+      "$" + Number(data.balance || 0).toFixed(2);
+
+    document.getElementById("equity").textContent =
+      "$" + Number(data.equity || 0).toFixed(2);
+
+    const floating = Number(data.floating || 0);
+
+    const floatingEl = document.getElementById("floating");
+    floatingEl.textContent = "$" + floating.toFixed(2);
+    floatingEl.className =
+      "value " + (floating >= 0 ? "green" : "red");
+
+    document.getElementById("positions").textContent =
+      data.positions || 0;
+
+    document.getElementById("symbol").textContent =
+      data.symbol || "XAUUSD";
+
+    document.getElementById("botStatus").textContent =
+      data.bot ? "ON" : "OFF";
+
+    const connection =
+      document.getElementById("connection");
+
+    if(data.connected){
+      connection.textContent = "● MT5 CONNECTED";
+      connection.className = "green";
+    }else{
+      connection.textContent = "● WAITING FOR MT5";
+      connection.className = "red";
+    }
+
+  }catch(error){
+    const connection =
+      document.getElementById("connection");
+
+    connection.textContent = "● BRIDGE OFFLINE";
+    connection.className = "red";
+  }
 }
 
-function refresh(){
- document.getElementById("status").innerText=
- "Dashboard refreshed • MT5 bridge pending";
+async function sendCommand(action){
+  try{
+    await fetch(API_BASE + "/api/command",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        action:action
+      })
+    });
+
+    document.getElementById("botStatus").textContent =
+      action === "bot_on" ? "ON" : "OFF";
+
+  }catch(error){
+    alert("Cannot connect to MT5 Bridge");
+  }
 }
+
+refreshStatus();
+setInterval(refreshStatus,3000);
 </script>
 
 </body>
