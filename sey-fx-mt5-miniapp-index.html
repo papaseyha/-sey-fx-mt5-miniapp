@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SEY FX MT5 Control</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--card:#121c2b;--line:#243247;--text:#f5f7fb;--muted:#8fa0b7;--green:#22c55e;--red:#ef4444;--blue:#2997ff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#07101d,#0d1725);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text)}
+main{max-width:560px;margin:auto;padding:20px 16px 36px}
+header{text-align:center;padding:12px 0 18px}h1{font-size:25px;margin:0 0 5px}.sub{color:var(--muted);font-size:13px}
+.card{background:rgba(18,28,43,.96);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}
+.status{display:flex;align-items:center;justify-content:space-between}.dot{width:11px;height:11px;border-radius:50%;display:inline-block;margin-right:8px;background:var(--red);box-shadow:0 0 12px rgba(239,68,68,.6)}.dot.on{background:var(--green);box-shadow:0 0 12px rgba(34,197,94,.6)}
+.label{color:var(--muted);font-size:12px}.value{font-size:22px;font-weight:700;margin-top:4px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#0d1725;border-radius:14px;padding:13px}
+button{border:0;border-radius:13px;padding:14px;font-size:16px;font-weight:700;width:100%;color:white;background:#23334a}button.on{background:var(--green)}button.off{background:var(--red)}button.refresh{background:var(--blue)}button:active{opacity:.8}
+.row{display:flex;gap:10px}.row>*{flex:1}.note{color:var(--muted);font-size:12px;line-height:1.5;margin-top:10px}
+</style>
+</head>
+<body>
+<main>
+<header><h1>SEY FX MT5 Control</h1><div class="sub">Trading Bot Mini App</div></header>
+
+<section class="card">
+  <div class="status"><div><span id="dot" class="dot"></span><b id="botState">BOT OFF</b></div><span id="connection" class="label">Waiting for MT5</span></div>
+  <div class="row" style="margin-top:14px">
+    <button class="on" onclick="botAction('on')">BOT ON</button>
+    <button class="off" onclick="botAction('off')">BOT OFF</button>
+  </div>
+</section>
+
+<section class="card">
+ <div class="grid">
+  <div class="metric"><div class="label">Balance</div><div class="value" id="balance">$0.00</div></div>
+  <div class="metric"><div class="label">Equity</div><div class="value" id="equity">$0.00</div></div>
+  <div class="metric"><div class="label">Floating P/L</div><div class="value" id="floating">$0.00</div></div>
+  <div class="metric"><div class="label">Positions</div><div class="value" id="positions">0</div></div>
+ </div>
+</section>
+
+<section class="card">
+ <div class="grid">
+  <div class="metric"><div class="label">BUY Re-entry</div><div class="value" id="buyPips">1000 pips</div></div>
+  <div class="metric"><div class="label">SELL Re-entry</div><div class="value" id="sellPips">1000 pips</div></div>
+  <div class="metric"><div class="label">Profit Target</div><div class="value" id="profitTarget">$5.00</div></div>
+  <div class="metric"><div class="label">Symbol</div><div class="value" id="symbol">XAUUSD</div></div>
+ </div>
+</section>
+
+<section class="card">
+ <button class="refresh" onclick="refreshStatus()">↻ Refresh Status</button>
+ <div class="note">This is the SEY FX Mini App interface. MT5 data/control will be connected through a secure HTTPS bridge.</div>
+</section>
+</main>
+<script>
+const API_BASE = ""; // Later: secure HTTPS MT5 bridge URL
+function setState(on){
+ document.getElementById('botState').textContent=on?'BOT ON':'BOT OFF';
+ document.getElementById('dot').className='dot'+(on?' on':'');
+}
+function botAction(mode){
+ // Placeholder until the secure MT5 bridge is connected.
+ setState(mode==='on');
+ document.getElementById('connection').textContent='UI mode only';
+}
+function refreshStatus(){ document.getElementById('connection').textContent='Ready for MT5 bridge'; }
+setState(false);
+</script>
+</body>
+</html>
