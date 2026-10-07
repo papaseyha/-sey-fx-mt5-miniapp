@@ -665,6 +665,17 @@ const s = data;
       : "MT5 DISCONNECTED";
 
     console.log("MT5 Status:", s);
+  document.getElementById("balance").textContent =
+  "$" + Number(s.balance || 0).toFixed(2);
+
+document.getElementById("equity").textContent =
+  "$" + Number(s.equity || 0).toFixed(2);
+
+document.getElementById("positions").textContent =
+  s.positions || 0;
+
+document.getElementById("floating").textContent =
+  "$" + Number(s.floating || 0).toFixed(2);
   } catch (error) {
     status.textContent = "Bridge connection error";
     console.error(error);
