@@ -646,12 +646,35 @@ async function bot(on){
   }
 }
 
-function refresh(){
+async function refresh(){
+  const status = document.getElementById("status");
 
-  document.getElementById("status").textContent =
-    "Status refreshed • Ready for MT5 bridge";
+  try {
+    const response = await fetch(API_BASE + "/api/status");
+    const data = await response.json();
 
+    if (!data.ok || !data.status) {
+      status.textContent = "Status failed";
+      return;
+    }
+
+    const s = data.status;
+
+    status.textContent = s.connected
+      ? "MT5 CONNECTED"
+      : "MT5 DISCONNECTED";
+
+    console.log("MT5 Status:", s);
+  } catch (error) {
+    status.textContent = "Bridge connection error";
+    console.error(error);
+  }
 }
+
+  
+    
+
+
 
 </script>
 
