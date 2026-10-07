@@ -676,6 +676,8 @@ document.getElementById("positions").textContent =
 
 document.getElementById("floating").textContent =
   "$" + Number(s.floating || 0).toFixed(2);
+    document.getElementById("profitday").textContent =
+"$" + Number(s.profitday || 0).toFixed(2);
   } catch (error) {
     status.textContent = "Bridge connection error";
     console.error(error);
