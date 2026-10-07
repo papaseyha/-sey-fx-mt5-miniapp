@@ -653,12 +653,12 @@ async function refresh(){
     const response = await fetch(API_BASE + "/api/status");
     const data = await response.json();
 
-    if (!data.ok || !data.status) {
-      status.textContent = "Status failed";
-      return;
-    }
+    if (!data.connected) {
+  status.textContent = "MT5 DISCONNECTED";
+  return;
+}
 
-    const s = data.status;
+const s = data;
 
     status.textContent = s.connected
       ? "MT5 CONNECTED"
