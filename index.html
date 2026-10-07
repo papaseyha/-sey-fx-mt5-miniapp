@@ -611,14 +611,39 @@ svg{
 
 
 <script>
+  const API_BASE = "https://sey-fx-mt5-bridge.onrender.com";
 
-function bot(on){
+async function bot(on){
+  const status = document.getElementById("status");
 
-  document.getElementById("status").textContent =
-    on
-    ? "BOT ON • UI mode only"
-    : "BOT OFF • UI mode only";
+  try {
+    status.textContent = on
+      ? "Sending BOT ON..."
+      : "Sending BOT OFF...";
 
+    const response = await fetch(API_BASE + "/api/command", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        action: on ? "bot_on" : "bot_off"
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.ok) {
+      status.textContent = on
+        ? "BOT ON • Command sent"
+        : "BOT OFF • Command sent";
+    } else {
+      status.textContent = "Command failed";
+    }
+
+  } catch (error) {
+    status.textContent = "Bridge connection error";
+  }
 }
 
 function refresh(){
