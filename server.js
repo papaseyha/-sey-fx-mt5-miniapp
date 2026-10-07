@@ -14,6 +14,7 @@ let mt5Status = {
   equity: 0,
   floating: 0,
   profit: 0,
+  profitday: 0,
   positions: 0,
   lastUpdate: null
 };
@@ -51,7 +52,9 @@ function updateStatus(req) {
 
   if (req.query.floating)
     mt5Status.floating = Number(req.query.floating);
-
+if (req.query.profitday)
+  mt5Status.profitday = Number(req.query.profitday);
+  
   if (req.query.positions)
     mt5Status.positions = Number(req.query.positions);
 }
