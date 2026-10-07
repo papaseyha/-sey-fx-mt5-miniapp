@@ -1,271 +1,632 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SEY FX MT5 Control</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SEY FX Trading Control</title>
 
 <style>
+:root{
+  color-scheme:dark;
+  --bg:#08070d;
+  --panel:rgba(31,20,38,.76);
+  --line:rgba(255,255,255,.13);
+  --text:#fff;
+  --muted:#b7aabd;
+  --pink:#ff3f73;
+  --violet:#b94cff;
+  --green:#42f59b;
+}
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
-  color:#fff;
+  color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:
-    radial-gradient(circle at 15% 5%,#64245f 0,#241329 38%,#090912 78%);
+    radial-gradient(circle at 10% 0%,#4c153f 0,transparent 38%),
+    radial-gradient(circle at 90% 20%,#64152f 0,transparent 34%),
+    linear-gradient(145deg,#09070e,#1b0c1b 55%,#09070e);
   min-height:100vh;
 }
-main{max-width:760px;margin:auto;padding:18px}
+
+main{
+  max-width:620px;
+  margin:auto;
+  padding:10px 12px 24px;
+}
+
+/* HEADER */
 
 nav{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:14px 4px 20px;
-}
-.logo{font-size:28px;font-weight:900}
-.logo span{color:#ff3f9c}
-.live{color:#55ff9a;font-weight:700}
-
-.card{
-  background:linear-gradient(145deg,#ffffff13,#ffffff07);
-  border:1px solid #ffffff1c;
-  border-radius:26px;
-  padding:24px;
-  margin-bottom:20px;
-  box-shadow:0 15px 50px #0005;
+  justify-content:space-between;
+  padding:6px 2px 12px;
 }
 
-.small{color:#aaa;font-size:13px}
-h1{font-size:42px;line-height:1.05;margin:12px 0}
-.grad{
-  background:linear-gradient(90deg,#ff4da6,#a98cff);
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.logo{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  font-weight:950;
+  background:linear-gradient(135deg,#ff3f73,#9b3cff);
+}
+
+.brand h1{
+  font-size:16px;
+  margin:0;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:8px;
+}
+
+.live{
+  border:1px solid #42f59b66;
+  background:#42f59b12;
+  color:var(--green);
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:800;
+}
+
+/* PANEL */
+
+.panel{
+  background:linear-gradient(
+    145deg,
+    rgba(62,30,63,.72),
+    rgba(21,15,29,.84)
+  );
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:14px;
+  box-shadow:0 15px 40px #0006;
+  margin-bottom:9px;
+}
+
+.badge{
+  display:inline-block;
+  color:#ff7b9d;
+  border:1px solid #ff3f7366;
+  background:#ff3f7315;
+  border-radius:999px;
+  padding:5px 8px;
+  font-size:8px;
+  font-weight:800;
+}
+
+h2{
+  font-size:29px;
+  line-height:1.02;
+  margin:10px 0 8px;
+  letter-spacing:-1px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#ff4775,#b84cff,#e45bff);
   -webkit-background-clip:text;
+  background-clip:text;
   color:transparent;
 }
 
-.desc{color:#bbb;line-height:1.6;font-size:17px}
+.desc{
+  color:#c7b9ca;
+  line-height:1.45;
+  font-size:10px;
+  max-width:430px;
+}
 
-.buttons{
+/* BUTTONS */
+
+.actions{
   display:flex;
-  gap:12px;
-  margin:22px 0;
+  gap:7px;
+  margin-top:11px;
 }
-button{
-  border:1px solid #ffffff22;
-  border-radius:18px;
-  padding:17px 28px;
-  color:white;
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:9px 12px;
+  color:#fff;
   font-weight:800;
-  font-size:16px;
+  font-size:10px;
   cursor:pointer;
-  background:#ffffff0c;
 }
+
+.primary{
+  background:linear-gradient(135deg,#ff4c70,#c13cff);
+}
+
+.secondary{
+  background:#ffffff12;
+  border:1px solid #ffffff20;
+}
+
+/* BOT INFO */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin-top:13px;
+  padding-top:11px;
+  border-top:1px solid #ffffff16;
+}
+
+.stat b{
+  display:block;
+  font-size:15px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:7px;
+}
+
+/* XAUUSD */
+
+.quote{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.symbol{
+  font-size:11px;
+  font-weight:850;
+}
+
+.price{
+  font-size:21px;
+  font-weight:900;
+  margin-top:4px;
+}
+
+.change{
+  color:var(--green);
+  font-size:8px;
+  margin-top:2px;
+}
+
+/* ACCOUNT */
+
+.row2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+h3{
+  font-size:11px;
+  margin:0 0 9px;
+}
+
+.meta{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+
+.meta div{
+  color:var(--muted);
+  font-size:7px;
+}
+
+.meta b{
+  display:block;
+  color:#fff;
+  font-size:10px;
+  margin-top:2px;
+}
+
+/* CHART */
+
+.chart{
+  height:42px;
+  position:relative;
+  overflow:hidden;
+  margin-top:5px;
+}
+
+svg{
+  width:100%;
+  height:100%;
+}
+
+/* PAIRS */
+
+.pairs{
+  display:grid;
+  gap:7px;
+}
+
+.pair{
+  display:flex;
+  justify-content:space-between;
+  font-size:8px;
+}
+
+.up{color:var(--green)}
+.down{color:#ff7191}
+
+/* EXECUTION */
+
+.muted{
+  color:var(--muted);
+  font-size:8px;
+}
+
+.exec{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+}
+
+.execbox{
+  background:#ffffff07;
+  border:1px solid #ffffff10;
+  border-radius:10px;
+  padding:9px 5px;
+  text-align:center;
+}
+
+.execbox b{
+  display:block;
+  font-size:15px;
+}
+
+.execbox span{
+  color:var(--muted);
+  font-size:7px;
+}
+
+/* BOT */
+
+.botbar{
+  margin-top:9px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.botbar button{
+  padding:10px;
+  border:0;
+  border-radius:10px;
+  font-size:10px;
+  font-weight:900;
+  color:#fff;
+  cursor:pointer;
+}
+
 .on{
-  background:linear-gradient(90deg,#ff3298,#9d58ff);
+  background:linear-gradient(135deg,#20d97a,#0d9f55);
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.stat{
-  background:#08081055;
-  border-radius:20px;
-  padding:20px;
-}
-.value{font-size:30px;font-weight:900}
-.label{font-size:13px;color:#aaa;margin-top:5px}
-
-.symbol{font-size:38px;font-weight:900;margin:10px 0}
-.green{color:#55ff9a}
-.red{color:#ff657a}
-
-.settings{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.setting{
-  background:#08081055;
-  border-radius:20px;
-  padding:20px;
-}
-.setting strong{font-size:28px}
-
-#connection{
-  font-weight:700;
-  margin-top:10px;
+.off{
+  background:linear-gradient(135deg,#ff4e68,#c72c46);
 }
 
-@media(max-width:550px){
-  h1{font-size:38px}
-  .grid,.settings{grid-template-columns:1fr 1fr}
-  main{padding:14px}
+.note{
+  text-align:center;
+  color:#806f84;
+  font-size:7px;
+  margin-top:9px;
+}
+
+/* PHONE */
+
+@media(max-width:430px){
+
+  main{
+    padding:8px 9px 20px;
+  }
+
+  .panel{
+    padding:12px;
+    border-radius:15px;
+  }
+
+  h2{
+    font-size:26px;
+  }
+
+  .row2{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .price{
+    font-size:19px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <main>
 
 <nav>
-  <div class="logo">SEY <span>FX</span></div>
-  <div class="live">● LIVE CONTROL</div>
+
+  <div class="brand">
+
+    <div class="logo">FX</div>
+
+    <div>
+      <h1>SEY FX</h1>
+      <small>MT5 TRADING CONTROL</small>
+    </div>
+
+  </div>
+
+  <div class="live">● LIVE</div>
+
 </nav>
 
-<section class="card">
-  <div class="small">⚡ MT5 TRADING CONTROL</div>
 
-  <h1>Trade with <span class="grad">confidence</span></h1>
+<!-- MAIN -->
+
+<section class="panel">
+
+  <span class="badge">
+    ◉ AUTO TRADING SYSTEM
+  </span>
+
+  <h2>
+    Trade with<br>
+    <span class="gradient">confidence.</span>
+  </h2>
 
   <div class="desc">
-    Control your MT5 trading bot and monitor your account in real time.
+    Control your SEY FX MT5 trading bot from one clean dashboard.
+    Monitor account status, positions, re-entry levels and profit targets.
   </div>
 
-  <div class="buttons">
-    <button class="on" onclick="sendCommand('bot_on')">BOT ON</button>
-    <button onclick="sendCommand('bot_off')">BOT OFF</button>
+  <div class="actions">
+
+    <button class="btn primary"
+      onclick="document.getElementById('bot').scrollIntoView({behavior:'smooth'})">
+      Start Trading
+    </button>
+
+    <button class="btn secondary" onclick="refresh()">
+      Refresh Status
+    </button>
+
   </div>
 
-  <div class="grid">
+  <div class="stats">
+
     <div class="stat">
-      <div class="value" id="balance">$0.00</div>
-      <div class="label">BALANCE</div>
+      <b>24/7</b>
+      <span>BOT OPERATION</span>
     </div>
 
     <div class="stat">
-      <div class="value" id="equity">$0.00</div>
-      <div class="label">EQUITY</div>
+      <b>0.01</b>
+      <span>BASE LOT</span>
     </div>
 
     <div class="stat">
-      <div class="value" id="positions">0</div>
-      <div class="label">POSITIONS</div>
+      <b>XAUUSD</b>
+      <span>PRIMARY SYMBOL</span>
     </div>
 
-    <div class="stat">
-      <div class="value" id="floating">$0.00</div>
-      <div class="label">FLOATING P/L</div>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <div class="small">XAUUSD • LIVE</div>
-  <div style="font-size:24px;font-weight:800">Gold Trading</div>
-
-  <div class="symbol" id="symbol">XAUUSD</div>
-
-  <div id="connection" class="red">
-    ● WAITING FOR MT5
-  </div>
-</section>
-
-<section class="settings">
-
-  <div class="setting">
-    <div class="label">BUY RE-ENTRY</div>
-    <strong>1000</strong> PIPS
-  </div>
-
-  <div class="setting">
-    <div class="label">SELL RE-ENTRY</div>
-    <strong>1000</strong> PIPS
-  </div>
-
-  <div class="setting">
-    <div class="label">PROFIT TARGET</div>
-    <strong>$5.00</strong>
-  </div>
-
-  <div class="setting">
-    <div class="label">BOT STATUS</div>
-    <strong id="botStatus">OFF</strong>
   </div>
 
 </section>
+
+
+<!-- GOLD -->
+
+<section class="panel quote">
+
+  <div>
+
+    <div class="symbol">
+      ⚡ XAUUSD
+    </div>
+
+    <div class="price">
+      $0.00
+    </div>
+
+    <div class="change">
+      ● MT5 CONNECTION READY
+    </div>
+
+  </div>
+
+  <div class="live">
+    ● Live
+  </div>
+
+</section>
+
+
+<div class="row2">
+
+<!-- ACCOUNT -->
+
+<section class="panel">
+
+  <h3>Account Overview</h3>
+
+  <div class="meta">
+
+    <div>
+      Balance
+      <b id="balance">$0.00</b>
+    </div>
+
+    <div>
+      Equity
+      <b id="equity">$0.00</b>
+    </div>
+
+    <div>
+      Positions
+      <b id="positions">0</b>
+    </div>
+
+  </div>
+
+  <div class="chart">
+
+    <svg viewBox="0 0 400 80"
+         preserveAspectRatio="none">
+
+      <defs>
+        <linearGradient id="g" x1="0" x2="1">
+          <stop stop-color="#ff3f73"/>
+          <stop offset="1" stop-color="#b94cff"/>
+        </linearGradient>
+      </defs>
+
+      <path
+        d="M0 63 C45 50 62 64 94 42
+        S140 53 170 35
+        S220 49 250 28
+        S310 42 350 18
+        S380 27 400 12"
+        fill="none"
+        stroke="url(#g)"
+        stroke-width="4"/>
+
+    </svg>
+
+  </div>
+
+</section>
+
+
+<!-- PAIRS -->
+
+<section class="panel">
+
+  <h3>Live Pairs</h3>
+
+  <div class="pairs">
+
+    <div class="pair">
+      <span>EUR/USD</span>
+      <span class="up">+0.24% ↗</span>
+    </div>
+
+    <div class="pair">
+      <span>GBP/JPY</span>
+      <span class="up">+0.34% ↗</span>
+    </div>
+
+    <div class="pair">
+      <span>XAU/USD</span>
+      <span class="up">+0.18% ↗</span>
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- EXECUTION -->
+
+<section class="panel">
+
+  <h3>
+    Execution Statistics
+    <span class="muted">• Real-time</span>
+  </h3>
+
+  <div class="exec">
+
+    <div class="execbox">
+      <b id="floating">$0.00</b>
+      <span>FLOATING P/L</span>
+    </div>
+
+    <div class="execbox">
+      <b id="target">$5.00</b>
+      <span>PROFIT TARGET</span>
+    </div>
+
+    <div class="execbox">
+      <b id="reentry">1000</b>
+      <span>RE-ENTRY PIPS</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BOT CONTROL -->
+
+<section class="panel" id="bot">
+
+  <h3>Bot Control</h3>
+
+  <div class="muted" id="status">
+    MT5 bridge waiting
+  </div>
+
+  <div class="botbar">
+
+    <button class="on" onclick="bot(true)">
+      ▶ BOT ON
+    </button>
+
+    <button class="off" onclick="bot(false)">
+      ■ BOT OFF
+    </button>
+
+  </div>
+
+</section>
+
+
+<div class="note">
+  SEY FX • MT5 Trading Control
+</div>
 
 </main>
 
+
 <script>
-const API_BASE = "https://sey-fx-mt5-miniapp.onrender.com";
 
-async function refreshStatus(){
-  try{
-    const response = await fetch(API_BASE + "/api/status", {
-      cache:"no-store"
-    });
+function bot(on){
 
-    if(!response.ok) throw new Error("API error");
+  document.getElementById("status").textContent =
+    on
+    ? "BOT ON • UI mode only"
+    : "BOT OFF • UI mode only";
 
-    const data = await response.json();
-
-    document.getElementById("balance").textContent =
-      "$" + Number(data.balance || 0).toFixed(2);
-
-    document.getElementById("equity").textContent =
-      "$" + Number(data.equity || 0).toFixed(2);
-
-    const floating = Number(data.floating || 0);
-
-    const floatingEl = document.getElementById("floating");
-    floatingEl.textContent = "$" + floating.toFixed(2);
-    floatingEl.className =
-      "value " + (floating >= 0 ? "green" : "red");
-
-    document.getElementById("positions").textContent =
-      data.positions || 0;
-
-    document.getElementById("symbol").textContent =
-      data.symbol || "XAUUSD";
-
-    document.getElementById("botStatus").textContent =
-      data.bot ? "ON" : "OFF";
-
-    const connection =
-      document.getElementById("connection");
-
-    if(data.connected){
-      connection.textContent = "● MT5 CONNECTED";
-      connection.className = "green";
-    }else{
-      connection.textContent = "● WAITING FOR MT5";
-      connection.className = "red";
-    }
-
-  }catch(error){
-    const connection =
-      document.getElementById("connection");
-
-    connection.textContent = "● BRIDGE OFFLINE";
-    connection.className = "red";
-  }
 }
 
-async function sendCommand(action){
-  try{
-    await fetch(API_BASE + "/api/command",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        action:action
-      })
-    });
+function refresh(){
 
-    document.getElementById("botStatus").textContent =
-      action === "bot_on" ? "ON" : "OFF";
+  document.getElementById("status").textContent =
+    "Status refreshed • Ready for MT5 bridge";
 
-  }catch(error){
-    alert("Cannot connect to MT5 Bridge");
-  }
 }
 
-refreshStatus();
-setInterval(refreshStatus,3000);
 </script>
 
 </body>
