@@ -692,8 +692,10 @@ if (profitDayEl) {
   
     
 
-setInterval(refresh, 1000);
 refresh();
+setInterval(() => {
+  refresh();
+}, 1000);
 
 
 </script>
