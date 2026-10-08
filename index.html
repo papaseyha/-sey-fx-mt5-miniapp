@@ -650,7 +650,10 @@ async function refresh(){
   const status = document.getElementById("status");
 
   try {
-    const response = await fetch(API_BASE + "/api/status");
+    const response = await fetch(
+  API_BASE + "/api/status?t=" + Date.now(),
+  { cache: "no-store" }
+);
     const data = await response.json();
 
     if (!data.connected) {
